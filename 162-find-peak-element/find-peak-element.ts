@@ -1,12 +1,15 @@
 function findPeakElement(nums: number[]): number {
-  for (let i = 0; i < nums.length; i++) {
-    const leftOk = i === 0 || nums[i] > nums[i - 1];
-    const rightOk = i === nums.length - 1 || nums[i] > nums[i + 1];
 
-    if (leftOk && rightOk) {
-      return i;
+    if( !nums) return -1;
+    if( nums.length ===1) return 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (i === 0) {
+      if (nums[i] > nums[i + 1]) return i;
+    } else if (i === nums.length - 1) {
+      if (nums[i] > nums[i - 1]) return i;
+    } else {
+      if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) return i;
     }
   }
-
-  return -1; // In case no peak is found (theoretically should never happen per problem)
+  return -1;
 }
