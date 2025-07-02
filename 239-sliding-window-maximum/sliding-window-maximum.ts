@@ -1,4 +1,5 @@
-function maxSlidingWindow(nums: number[], k: number): number[] {
+
+    function maxSlidingWindow(nums: number[], k: number): number[] {
     const res: number[] = [];
     const deque: number[] = []; // stores indices
 
@@ -23,4 +24,13 @@ function maxSlidingWindow(nums: number[], k: number): number[] {
     }
 
     return res;
+
+    // for( let i=0;i<= nums.length -k;i++){
+    //     let window:number[]= nums.slice(i,i+k);
+    //    max = Math.max(...window );
+    //    res.push(max);
+    // }
+    // return res;
+    //  time limit exceeded
+    
 }
