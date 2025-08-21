@@ -1,31 +1,26 @@
 function maxArea(height: number[]): number {
  
+  let len = height.length;
+  let left =0;
+  let right = len -1;
 
-   let left =0;
-   let right = height.length -1;
+  let maxWater =0;
 
-   let leftMax =height[0];
-   let rightMax = height[right];
-   let res = 0;
-   let width =0;
-   let ht =0;
+  while( left < right ){
+    let ht = Math.min(height[right] , height[left]);
+    let width = right -left;
+    let area = ht * width;
 
-   while( left < right ){
-     leftMax = Math.max(leftMax , height[left]);
-     rightMax = Math.max(rightMax , height[right]);
-
-      width = right -left;
-       ht = Math.min( leftMax , rightMax);
-       res = Math.max( res, width*ht);
-
-     if( height[left] < height[right]){
-
-         left++;
-     }else{
+    maxWater = Math.max(maxWater , area);
+    if( height[left]<height[right] ){
+        left++;
+    }else{
         right --;
-     }
+    }
 
-   }
-   return res;
+
+  }
+
+  return maxWater;
 
 };
