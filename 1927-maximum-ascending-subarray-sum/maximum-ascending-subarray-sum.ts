@@ -1,20 +1,20 @@
 function maxAscendingSum(nums: number[]): number {
-    let r=1;
-    let n = nums.length;
-    let sum=nums[0];
-    let  maxSum = nums[0];
 
-    while(r<n){
-        while(r<n && nums[r]>nums[r-1]){
-            sum+=nums[r];
-            r++;
-        }
-        maxSum = Math.max(maxSum , sum);
-        if(r<n){
-            sum=nums[r];
-        }
-        r++;
+  let maxSum = nums[0];
+  let currSum = maxSum;
 
+  for( let i=1;i< nums.length ;i++){
+    if( nums[i] > nums[i-1]){
+        currSum += nums[i]
+    }else{
+        currSum = nums[i]
     }
-    return maxSum;
+
+    if( maxSum < currSum){
+        maxSum = currSum;
+    }
+  }
+
+return maxSum;
+
 };
