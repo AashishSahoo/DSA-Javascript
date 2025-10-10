@@ -1,44 +1,29 @@
 function fourSum(nums: number[], target: number): number[][] {
   let res:number[][]=[];
-
   nums=nums.sort((a,b)=> a-b);
 
-  if(nums.length<4){
-    return [];
-  }
+  for(let i=0;i<nums.length-1;i++){
+    if(i>0 && nums[i]=== nums[i-1]) continue;
+    for(let j=i+1;j<nums.length;j++){
+        if(j>i+1 && nums[j]===nums[j-1]) continue;
+        let start = j+1;
+        let end = nums.length-1;
 
-   for( let i=0;i<nums.length-3 ;i++){
-      if( i>0 && nums[i]===nums[i-1]  ) continue;
+        while( start<end){
+            let sum = nums[i] + nums[j] + nums[start] + nums[end] ;
+            if(sum === target){
+                res.push([nums[i] , nums[j] ,nums[start] , nums[end]]);
+                start++;
+                end--;
 
-    for( let j=i+1 ;j<nums.length-2;j++){
-      if (j > i + 1 && nums[j] === nums[j - 1]) continue; 
-
-        let p=j+1;
-        let q=nums.length-1;
-
-        while(p<q){
-
-            let sum = nums[i]+nums[j]+nums[p]+nums[q];
-            let temp = [nums[i],nums[j],nums[p],nums[q]];
-        
-            if(sum === target  ){
-                res.push(temp);
-                p++;
-                q--;
-                while(p<q && nums[p]===nums[p-1] ){
-                    p++;
-                }
-                 
-            }else if(  sum < target){
-               p++;
+                while(start<end && nums[start]=== nums[start-1])start++;
+            }else if( sum < target){
+                start++;
             }else{
-                q--;
+                end--;
             }
         }
-        
-        
     }
-   }
-   
-   return res;
+  }
+  return res;
 }
