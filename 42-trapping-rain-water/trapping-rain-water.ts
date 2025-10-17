@@ -1,24 +1,30 @@
 
 function trap(height: number[]): number {
-   let left =0;
-   let right=height.length -1;
-   let leftMax =0;
-   let rightMax =0;
 
-   let trappedWater =0;
+   let left=0;
+   let right = height.length-1;
+   let leftmax= 0;
+   let rightmax= 0;
+   let res=0;
 
-   while( left <right){
-    leftMax = Math.max(leftMax , height[left]);
-    rightMax = Math.max(rightMax , height[right]);
+   for(let i=0;i<height.length;i++){
 
-    if(height[left] <height[right]){
-        trappedWater += leftMax - height[left];
-        left++;
-    }else{
-        trappedWater += rightMax - height[right];
-        right--;
-    }
+    leftmax= Math.max( leftmax , height[left]);
+    rightmax= Math.max( rightmax , height[right]);
+
+    
+      if( height[left] < height[right] ){
+           res += leftmax - height[left];
+           left++;
+      }
+      else{
+           res += rightmax - height[right];
+           right--;
+      }
+      
+
    }
+       return res;
 
-   return trappedWater;
+
 };
