@@ -7,7 +7,7 @@ function stoneGame(piles: number[]): boolean {
    while(piles.length>0){
       if(i%2!==0){
         let max =piles[0];
-        piles.shift();
+         piles.shift();
         alice.push(max);
         i++;
 
