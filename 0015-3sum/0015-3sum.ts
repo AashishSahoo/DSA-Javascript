@@ -1,34 +1,42 @@
 function threeSum(nums: number[]): number[][] {
    
-    let res:number[][]=[];
+   let res:number[][]=[];
+   if(nums.length <3)return [];
+   
+   nums=nums.sort((a,b)=> a-b);
 
-    nums= nums.sort((a,b)=> a-b);
+   for(let i=0;i<nums.length-2;i++){
+     if( i>0 && nums[i]===nums[i-1]) continue;
 
-    for(let i=0;i<nums.length-2;i++){
+         let p=i+1;
+         let q=nums.length-1;
 
-        if(i>0 && nums[i]===nums[i-1]){continue}
-        let start = i+1;
-        let end = nums.length-1;
+         while(p<q){
+            let sum = nums[i]+nums[p]+nums[q];
+                    
+            if(sum === 0){
+                let temp:number[] =[nums[i],nums[p],nums[q]];
+                res.push(temp);
+                p++;
+                q--;
 
-        while(start<end){
-            if( nums[i] + nums[start] + nums[end] === 0){
-                res.push([nums[i] , nums[start] , nums[end]]);
-                start++;
-                end--;
-
-
-                while(start<end && nums[start]===nums[start-1] ){
-                    start++;
-                }
-                while(start<end && nums[end]===nums[end+1] ){
-                    end--;
-                }
-            }else if( nums[i] + nums[start] + nums[end] <0){
-                start++;
-            }else{
-                end--;
+                 while( p<q && nums[p]===nums[p-1]){
+                p++;
             }
-        }
-    }
-    return res;
+
+            while( p<q && nums[q]===nums[q+1]){
+                q--;
+            }
+               
+            }
+            else if(sum < 0){
+                 p++;
+            }
+            else{
+                q--;
+            }
+         
+         }
+   }
+   return res;
 };
