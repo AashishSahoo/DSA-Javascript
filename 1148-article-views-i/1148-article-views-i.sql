@@ -1,8 +1,6 @@
-select author_id    as id
-from Views
-where author_id=viewer_id     
-group by author_id
--- having author_id=viewer_id  
-order by    id 
-
+# Write your MySQL query statement below
+select distinct v1.author_id  as id   
+from Views as v1
+where v1.author_id = v1.viewer_id 
+order by id
 
