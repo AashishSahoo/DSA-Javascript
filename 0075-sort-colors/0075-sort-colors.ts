@@ -2,12 +2,14 @@
  Do not return anything, modify nums in-place instead.
  */
 function sortColors(nums: number[]): void {
-    let n = nums.length ;
-    for( let i=0;i<n ;i++){
-        for( let j=0;j<n-i;j++){
-            if( nums[j] > nums[j+1]){
-                [nums[j] ,nums[j+1]] = [ nums[j+1] ,nums[j]];
+    let n= nums.length-1;
+    for(let i=0;i<nums.length;i++){
+        for(let j=0;j<n-i;j++){
+            if(nums[j]>nums[j+1]){
+                let temp=nums[j];
+                nums[j]=nums[j+1];
+                nums[j+1]= temp;
             }
         }
     }
-}
+};
