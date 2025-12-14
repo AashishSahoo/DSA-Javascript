@@ -1,6 +1,5 @@
-
-
-select * 
-from Cinema
-where  id%2!=0 and description!="boring"
-order by rating desc
+# Write your MySQL query statement below
+select *
+from Cinema as c
+where c.id%2 != 0 and c.description !="boring"
+order by c.rating desc
