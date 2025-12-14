@@ -1,16 +1,17 @@
-function longestCommonPrefix(strs: string[]): string{
-  if( strs.length ===0) return "";
-  if(strs.length ===1 ) return strs[0];
+function longestCommonPrefix(strs: string[]): string {
 
-  strs =strs.sort();
-  let result:string ="";
-  for(let i=0;i<strs[0].length;i++ ){
-    if( strs[0].charAt(i) === strs[strs.length-1].charAt(i) ){
-        result += strs[0].charAt(i);
-    }else {
-        return result;
+     if( strs.length ===0) return "";
+     if(strs.length ===1 ) return strs[0];
+ 
+    strs= strs.sort();
+    let a=strs[0];
+    let b=strs[strs.length-1];
+
+    let res="";
+    for(let i=0;i<a.length;i++){
+       if(a[i]===b[i]) res+=a[i];
+       else break;
+
     }
-  }
-  return result;
-
+    return res;
 };
