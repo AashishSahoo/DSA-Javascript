@@ -1,4 +1,5 @@
 function maxProfit(prices: number[], fee: number): number {
+
   let profit = 0;
   let buy = prices[0];
 
