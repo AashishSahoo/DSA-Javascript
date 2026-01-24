@@ -1,12 +1,14 @@
 function maxProfit(prices: number[], fee: number): number {
-    
-let cash =0;
-let hold=-prices[0];
 
-for(let i=0;i<prices.length;i++){
-    cash = Math.max( cash , hold + prices[i] - fee);//sell
-    hold = Math.max(hold, cash -prices[i]);//buy
+  let profit = 0;
+  let buy = prices[0];
+
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i] < buy) buy = prices[i];
+    else if (prices[i] > buy + fee) {
+      profit += prices[i] - buy - fee;
+      buy = prices[i] - fee;
+    }
+  }
+  return profit;
 }
-return cash;
-    
-};
