@@ -1,13 +1,21 @@
 function subarraySum(nums: number[], k: number): number {
-   let cnt=0;
 
-   for(let i=0;i<nums.length;i++){
-    let sum=0;
-    for(let j=i;j<nums.length;j++){
-       sum+=nums[j];
+ let cnt = 0;
+ let n = nums.length;
 
-       if(sum === k) cnt++;
+ for(let i=0; i<n; i++){
+
+    let sum = 0;
+
+    for(let j=i; j<n; j++){
+
+       sum += nums[j];
+
+       if(sum === k){
+         cnt++;
+       }
     }
-   }
-   return cnt;
-};
+ }
+
+ return cnt;
+}
