@@ -1,16 +1,16 @@
 function maxSubArray(nums: number[]): number {
-    let sum =-Infinity;
 
-    let currSum=0;
-
+    let sum =0;
+    let max= -Infinity;
 
     for(let i=0;i<nums.length;i++){
-        if(currSum<0){
-            currSum=0;
+        if(sum<0){
+            sum=0;
         }
 
-        currSum+=nums[i];
-        sum=Math.max(sum,currSum);
+        sum+=nums[i];
+
+        max=Math.max(sum ,max);
     }
-return sum;
+    return max;
 };
