@@ -1,15 +1,17 @@
 function isPalindrome(x: number): boolean {
-    let arr=x.toString();
+      let s= x.toString();
+      
+      let arr = s.split("");
 
-    // let arr= x.split("");
-    let i=0;
-    let j=arr.length-1;
-    while(i<j){
+      let i=0;
+      let j=arr.length-1;
+
+      while(i<j){
         if(arr[i]!==arr[j]) return false;
-        i++;
-        j--;
-    }
-
-    return true;
-    
+        else {
+            i++;
+            j--;
+        }
+      }
+      return true;
 };
