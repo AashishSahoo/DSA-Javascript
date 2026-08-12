@@ -1,34 +1,36 @@
 function threeSum(nums: number[]): number[][] {
-   
-    let res:number[][]=[];
-
-    nums= nums.sort((a,b)=> a-b);
+    let result =[];
+    nums = nums.sort((a, b) => a - b);
 
     for(let i=0;i<nums.length-2;i++){
+        if(i>0 &&nums[i]===nums[i-1])continue;
 
-        if(i>0 && nums[i]===nums[i-1]){continue}
-        let start = i+1;
-        let end = nums.length-1;
+        let left =i+1;
+        let right = nums.length-1;
 
-        while(start<end){
-            if( nums[i] + nums[start] + nums[end] === 0){
-                res.push([nums[i] , nums[start] , nums[end]]);
-                start++;
-                end--;
+        while(left <right){
+            let sum = nums[i]+nums[left]+nums[right];
+            if(sum===0){
+                result.push([nums[i],nums[left],nums[right]]);
 
+                left++;
+                right--;
 
-                while(start<end && nums[start]===nums[start-1] ){
-                    start++;
+                while(left<right && nums[left]===nums[left-1]){
+                    left++;
                 }
-                while(start<end && nums[end]===nums[end+1] ){
-                    end--;
+                while(left<right && nums[right]===nums[right+1]){
+                    right--;
                 }
-            }else if( nums[i] + nums[start] + nums[end] <0){
-                start++;
+            }
+            else if(sum<0){
+                left++;
             }else{
-                end--;
+                right--;
             }
         }
+
+
     }
-    return res;
+    return result;
 };
