@@ -1,29 +1,63 @@
 function fourSum(nums: number[], target: number): number[][] {
-  let res:number[][]=[];
-  nums=nums.sort((a,b)=> a-b);
+    const result: number[][] = [];
 
-  for(let i=0;i<nums.length-1;i++){
-    if(i>0 && nums[i]=== nums[i-1]) continue;
-    for(let j=i+1;j<nums.length;j++){
-        if(j>i+1 && nums[j]===nums[j-1]) continue;
-        let start = j+1;
-        let end = nums.length-1;
+    nums.sort((a, b) => a - b);
 
-        while( start<end){
-            let sum = nums[i] + nums[j] + nums[start] + nums[end] ;
-            if(sum === target){
-                res.push([nums[i] , nums[j] ,nums[start] , nums[end]]);
-                start++;
-                end--;
+    const n = nums.length;
 
-                while(start<end && nums[start]=== nums[start-1])start++;
-            }else if( sum < target){
-                start++;
-            }else{
-                end--;
+    for (let i = 0; i < n - 3; i++) {
+        // Skip duplicate i
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+        for (let j = i + 1; j < n - 2; j++) {
+            // Skip duplicate j
+            if (j > i + 1 && nums[j] === nums[j - 1]) continue;
+
+            let left = j + 1;
+            let right = n - 1;
+
+            while (left < right) {
+                const sum =
+                    nums[i] +
+                    nums[j] +
+                    nums[left] +
+                    nums[right];
+
+                if (sum === target) {
+                    result.push([
+                        nums[i],
+                        nums[j],
+                        nums[left],
+                        nums[right]
+                    ]);
+
+                    left++;
+                    right--;
+
+                    // Skip duplicate left
+                    while (
+                        left < right &&
+                        nums[left] === nums[left - 1]
+                    ) {
+                        left++;
+                    }
+
+                    // Skip duplicate right
+                    while (
+                        left < right &&
+                        nums[right] === nums[right + 1]
+                    ) {
+                        right--;
+                    }
+
+                } else if (sum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
             }
         }
     }
-  }
-  return res;
+
+    return result;
 }
