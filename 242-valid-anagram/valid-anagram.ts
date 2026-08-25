@@ -1,20 +1,21 @@
 function isAnagram(s: string, t: string): boolean {
-    
-    if(s.length !== t.length) return false;
-
-    let sm=new Map();
-    for(let char of s){
-        sm.set( char , (sm.get(char) ||0)+1 );
+    if (s.length !== t.length) {
+        return false;
     }
 
+    let frq = new Map<string, number>();
 
-    for(let char of t){
-        if(!sm.has(char))return false;
-
-        sm.set(char ,sm.get(char)-1);
-        if(sm.get(char)<0) return false;
-
+    for (let i = 0; i < s.length; i++) {
+        frq.set(s[i], (frq.get(s[i]) || 0) + 1);
     }
+
+    for (let i = 0; i < t.length; i++) {
+        if (!frq.get(t[i])) {
+            return false;
+        }
+
+        frq.set(t[i], frq.get(t[i])! - 1);
+    }
+
     return true;
-
-};
+}
